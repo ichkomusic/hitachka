@@ -1,0 +1,95 @@
+@media (prefers-reduced-motion: no-preference) {
+  html[data-hitachka-wipe]::before,
+  html[data-hitachka-wipe]::after,
+  .wipe-wordmark {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647;
+    pointer-events: none;
+  }
+
+  html[data-hitachka-wipe]::before,
+  html[data-hitachka-wipe]:not([data-hitachka-wipe="cover-pop"])::after {
+    content: "";
+  }
+
+  html[data-hitachka-wipe]::before {
+    background: #0c0c0c;
+    pointer-events: auto;
+  }
+
+  html[data-hitachka-wipe]::after {
+    background: url("../assets/images/hitachka-logo.png") center / clamp(9.5rem, 31vw, 20rem) auto no-repeat;
+  }
+
+  html[data-hitachka-wipe="cover"]::before,
+  html[data-hitachka-wipe="cover"]::after {
+    animation: hitachka-cover 280ms cubic-bezier(.6, .04, .36, 1) both;
+  }
+
+  html[data-hitachka-wipe="cover-pop"]::before,
+  .wipe-wordmark {
+    animation: hitachka-cover-pop 980ms cubic-bezier(.6, .04, .36, 1) both;
+  }
+
+  .wipe-wordmark {
+    display: grid;
+    place-items: center;
+  }
+
+  .wipe-wordmark-art {
+    position: relative;
+    width: clamp(9.5rem, 31vw, 20rem);
+    aspect-ratio: 2048 / 734;
+  }
+
+  .wipe-wordmark-art img {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--width);
+    height: auto;
+    max-width: none;
+    animation: hitachka-letter-pop 190ms ease-out var(--delay) both;
+  }
+
+  .wipe-wordmark-art .wipe-line {
+    animation: hitachka-line-draw 130ms ease-out var(--delay) both;
+  }
+
+  html[data-hitachka-wipe="reveal"]::before,
+  html[data-hitachka-wipe="reveal"]::after {
+    animation: hitachka-reveal 370ms cubic-bezier(.62, .02, .26, 1) both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wipe-wordmark { display: none; }
+}
+
+@keyframes hitachka-cover {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0); }
+}
+
+@keyframes hitachka-cover-pop {
+  from { clip-path: inset(0 0 100% 0); }
+  22%, to { clip-path: inset(0); }
+}
+
+@keyframes hitachka-letter-pop {
+  from { opacity: 0; transform: translateY(14%) scale(.78); }
+  60% { opacity: 1; transform: translateY(-3%) scale(1.08); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes hitachka-line-draw {
+  from { opacity: 0; clip-path: inset(0 100% 0 0); }
+  20% { opacity: 1; }
+  to { opacity: 1; clip-path: inset(0); }
+}
+
+@keyframes hitachka-reveal {
+  from { clip-path: inset(0); }
+  to { clip-path: inset(100% 0 0); }
+}
