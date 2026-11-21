@@ -21,6 +21,8 @@
 <link rel="stylesheet" href="../css/page-transition.css">
 <script src="../js/page-transition.js"></script>
 <script src="../js/studio-content.js" defer></script>
+<script src="../js/studio-cloud-config.js" defer></script>
+<script src="../js/studio-cloud.js" defer></script>
 <script src="../js/schedule.js" defer></script>
 <script src="../js/contact.js" defer></script>
 <style>
@@ -60,9 +62,9 @@
 <main>
 <section class="wrap subpage" id="contact" aria-labelledby="contact-title">
 <div><p class="eyebrow">Контакт</p><h1 id="contact-title" class="display" tabindex="-1">Имаш<br>проект<span class="question-mark"><span class="question-mark-text">?</span><svg viewBox="0 -800 519 1000" fill="currentColor" aria-hidden="true" focusable="false"><g transform="scale(1 -1)"><path d="M317 187Q317 219 319.5 240.5Q322 262 329 279.0Q336 296 348.5 311.0Q361 326 382 344Q411 370 430.5 391.5Q450 413 462 434.0Q474 455 479 476.5Q484 498 484 523Q484 572 467 614.0Q450 656 420 686.5Q390 717 348.5 734.5Q307 752 259 752Q210 752 170 736.0Q130 720 100.5 689.5Q71 659 53 616.5Q35 574 31 520H164Q171 572 193 596.0Q215 620 256 620Q277 620 294.5 613.0Q312 606 324.5 593.5Q337 581 344 564.0Q351 547 351 527Q351 515 348 504.0Q345 493 339.5 482.0Q334 471 325.5 461.0Q317 451 306 442Q269 412 245.5 386.0Q222 360 208 331.5Q194 303 189 268.5Q184 234 184 187Z"/><path class="question-mark-dot" d="M184 0H317V128H184Z"/></g></svg></span></h1><p class="intro">Разкажи ни какво записваш, с какво да помогнем и кога ти е удобно.</p><div class="location"><span class="mono">HITACHKA</span><p>Звукозаписно студио · Варна, България</p></div></div>
-<form class="panel contact-form" id="contact-form">
-<label>Име<input name="name" autocomplete="name" required placeholder="Твоето име"></label>
-<label>Имейл<input name="email" type="email" autocomplete="email" required placeholder="name@example.com"></label>
+<form class="panel contact-form" id="contact-form" method="post">
+<label>Име<input name="name" maxlength="100" autocomplete="name" required placeholder="Твоето име"></label>
+<label>Имейл<input name="email" type="email" maxlength="254" autocomplete="email" required placeholder="name@example.com"></label>
 <label>Услуга<select name="service" id="service"><option value="">Избери услуга</option><option>Запис</option><option>Аранжимент</option><option>Микс</option><option>Мастъринг</option><option>Писане на музика</option><option>Репетиция</option><option>Видеопродукция (препоръка)</option><option>Друго</option></select></label>
 <div class="contact-when">
 <label>Предпочитана дата<input name="date" id="requested-date" type="date"></label>
@@ -71,9 +73,10 @@
 <p id="inquiry-hours-note" class="small" aria-live="polite">Избери дата.</p>
 </fieldset>
 </div>
-<label>За проекта<textarea name="message" required placeholder="Няколко думи за идеята ти"></textarea></label>
-<button class="btn" type="submit">Преглед на запитването</button>
-<p class="small">Демо форма за преглед на запитването.</p>
+<label>За проекта<textarea name="message" maxlength="4000" required placeholder="Няколко думи за идеята ти"></textarea></label>
+<div id="inquiry-challenge"></div>
+<button class="btn" type="submit" disabled>Изпрати запитване</button>
+<p class="small">Ще потвърдим часа по имейл. Можеш и да ни пишеш на <a href="mailto:hitachkastudio@gmail.com">hitachkastudio@gmail.com</a>.</p>
 <p id="form-note" class="form-note" role="status" hidden></p>
 </form>
 </section>
