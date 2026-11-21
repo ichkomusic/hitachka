@@ -96,7 +96,7 @@
     if (!token || sending || loadingAvailability) return;
     const data = new FormData(form);
     const hours = data.getAll('hour').map(Number);
-    const payload = Object.fromEntries(['name', 'email', 'service', 'date', 'message']
+    const payload = Object.fromEntries(['name', 'email', 'phone', 'service', 'date', 'message']
       .map(key => [key, data.get(key) || '']));
     sending = true;
     submit.disabled = true;

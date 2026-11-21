@@ -24,7 +24,7 @@
 <script src="../js/studio-cloud-config.js" defer></script>
 <script src="../js/studio-cloud.js" defer></script>
 <script src="../js/schedule.js" defer></script>
-<script src="../js/contact.js" defer></script>
+<script src="../js/contact.js?v=booking-1" defer></script>
 <style>
 #contact-title .question-mark {
   color: inherit;
@@ -65,6 +65,7 @@
 <form class="panel contact-form" id="contact-form" method="post">
 <label>Име<input name="name" maxlength="100" autocomplete="name" required placeholder="Твоето име"></label>
 <label>Имейл<input name="email" type="email" maxlength="254" autocomplete="email" required placeholder="name@example.com"></label>
+<label>Телефон (по желание)<input name="phone" type="tel" maxlength="32" autocomplete="tel" placeholder="+359"></label>
 <label>Услуга<select name="service" id="service"><option value="">Избери услуга</option><option>Запис</option><option>Аранжимент</option><option>Микс</option><option>Мастъринг</option><option>Писане на музика</option><option>Репетиция</option><option>Видеопродукция (препоръка)</option><option>Друго</option></select></label>
 <div class="contact-when">
 <label>Предпочитана дата<input name="date" id="requested-date" type="date"></label>
