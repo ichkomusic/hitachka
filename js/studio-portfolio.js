@@ -1,5 +1,7 @@
-(function renderStudioPortfolio(){
-  const {projects, gallery} = window.HITACHKA_CONTENT;
+(async function renderStudioPortfolio(){
+  const projectsGrid = document.querySelector('.project-grid');
+  const {gallery} = window.HITACHKA_CONTENT;
+  let {projects} = window.HITACHKA_CONTENT;
   const siteRoot = new URL("../", document.currentScript.src);
 
   function element(tag, className, text){
@@ -46,13 +48,24 @@
     button.type = 'button';
     button.setAttribute('aria-label','Увеличи кадъра: '+item.title);
     button.append(photo(item,item.alt || item.title));
-    const caption = item.description ? item.title+' · '+item.description : item.title;
-    card.append(button,element('figcaption','',caption));
+    card.append(button);
     return card;
   }
 
-  const projectsGrid = document.querySelector('.project-grid');
   if(projectsGrid){
+    if (window.HITACHKA_API && location.protocol !== 'file:') {
+      try {
+        const response = await fetch(new URL('/projects', window.HITACHKA_API), {
+          cache: 'no-store', credentials: 'omit', signal: AbortSignal.timeout(4500),
+        });
+        if (response.ok) {
+          const remote = await response.json();
+          if (remote.initialized === true && Array.isArray(remote.projects)) projects = remote.projects;
+        }
+      } catch {
+        // Use the bundled project list during an API outage.
+      }
+    }
     const projectsPerPage = 5;
     const pageCount = Math.ceil(projects.length / projectsPerPage);
     const pagination = document.querySelector('.project-pagination');
