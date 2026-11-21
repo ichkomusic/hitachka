@@ -11,13 +11,14 @@ function studioClock(){
   return {date:parts.year+'-'+parts.month+'-'+parts.day, hour:Number(parts.hour)};
 }
 const initialDate = studioClock().date;
-const sessionHours = window.HITACHKA_CONTENT.hours;
+const availabilityReady = window.loadStudioCalendar?.();
 const timeText = hour => String(hour).padStart(2,'0')+':00';
 const interval = hour => timeText(hour)+' – '+timeText(hour+1);
 const hourList = hours => [...hours].sort((a,b)=>a-b).map(interval).join(', ');
 
 function daySchedule(date, clock){
   if(date < clock.date) return [];
+  const sessionHours = window.HITACHKA_CONTENT.hours;
   const openHours = window.HITACHKA_CONTENT.days[date] ?? sessionHours;
   return sessionHours
     .filter(hour=>date !== clock.date || hour > clock.hour)
